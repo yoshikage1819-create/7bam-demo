@@ -4,8 +4,8 @@
   "lang": "ja",
   "description": "毎日の一枚を、みんなでZINEに。",
   "display": "browser",
-  "background_color": "#F6F4EF",
-  "theme_color": "#F6F4EF",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
   "start_url": ".",
   "scope": ".",
   "icons": [
