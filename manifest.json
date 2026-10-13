@@ -3,7 +3,7 @@
   "short_name": "7bam",
   "lang": "ja",
   "description": "毎日の一枚を、みんなでZINEに。",
-  "display": "browser",
+  "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#FFFFFF",
   "start_url": ".",
