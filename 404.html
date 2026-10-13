@@ -79,6 +79,55 @@
     <div id="root">
       <div class="boot" aria-label="7bamを読みこんでいます" role="status"><span>7bam</span></div>
     </div>
-  <script src="/7bam-demo/_expo/static/js/web/index-2a52343a16de11c6b9277d2130e05cd8.js" defer></script>
+    <script>
+      // A phone can keep an old copy of the app open for days (above all the
+      // Home Screen app). When the app is looked at again after a long pause
+      // and a newer build is published, the page is loaded again, once.
+      (function () {
+        var longPauseMs = 10 * 60 * 1000;
+        var hiddenAt = 0;
+        var checking = false;
+        function currentScript() {
+          var script = document.querySelector('script[src*="/_expo/static/js/"]');
+          return script ? script.getAttribute('src') : null;
+        }
+        function check() {
+          var mine = currentScript();
+          if (!mine || checking) return;
+          checking = true;
+          fetch(location.pathname + '?fresh=' + Date.now(), { cache: 'no-store' })
+            .then(function (response) {
+              return response.ok ? response.text() : '';
+            })
+            .then(function (html) {
+              var found = /src="([^"]*\/_expo\/static\/js\/[^"]+)"/.exec(html);
+              if (!found || found[1] === mine) return;
+              // Never twice for the same build, so a stale answer cannot loop.
+              try {
+                if (sessionStorage.getItem('7bam:reloaded-for') === found[1]) return;
+                sessionStorage.setItem('7bam:reloaded-for', found[1]);
+              } catch (error) {
+                return;
+              }
+              location.reload();
+            })
+            .catch(function () {})
+            .then(function () {
+              checking = false;
+            });
+        }
+        document.addEventListener('visibilitychange', function () {
+          if (document.visibilityState === 'hidden') {
+            hiddenAt = Date.now();
+          } else if (hiddenAt > 0 && Date.now() - hiddenAt >= longPauseMs) {
+            check();
+          }
+        });
+        window.addEventListener('pageshow', function (event) {
+          if (event.persisted) check();
+        });
+      })();
+    </script>
+  <script src="/7bam-demo/_expo/static/js/web/index-7614777f54a272bfe46b5ca13003e90e.js" defer></script>
 </body>
 </html>
