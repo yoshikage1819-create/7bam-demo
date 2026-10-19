@@ -57,9 +57,11 @@
         box-sizing: border-box;
       }
       /* No single character left alone on the last line of a paragraph
-         ("す。" on its own line). Browsers without it ignore it. */
+         ("す。" on its own line). Browsers without it ignore it. Only the
+         style longhand: the text-wrap shorthand would also turn wrapping back
+         on for one-line text (numberOfLines). */
       #root div {
-        text-wrap: pretty;
+        text-wrap-style: pretty;
       }
       /* Shown until the app script replaces the contents of #root. */
       .boot {
@@ -147,6 +149,6 @@
         });
       })();
     </script>
-  <script src="/7bam-demo/_expo/static/js/web/index-6ca96054f39a19911757ef08b1e3ccaf.js" defer></script>
+  <script src="/7bam-demo/_expo/static/js/web/index-8757f93bc825b2d5ae52bfb14ab8ff49.js" defer></script>
 </body>
 </html>
