@@ -56,6 +56,11 @@
         padding-top: env(safe-area-inset-top);
         box-sizing: border-box;
       }
+      /* No single character left alone on the last line of a paragraph
+         ("す。" on its own line). Browsers without it ignore it. */
+      #root div {
+        text-wrap: pretty;
+      }
       /* Shown until the app script replaces the contents of #root. */
       .boot {
         align-items: center;
@@ -142,6 +147,6 @@
         });
       })();
     </script>
-  <script src="/7bam-demo/_expo/static/js/web/index-9eb8289087e297efba9609381a14adb2.js" defer></script>
+  <script src="/7bam-demo/_expo/static/js/web/index-c7ea31c359ea57734286fc08cb9e99f0.js" defer></script>
 </body>
 </html>
